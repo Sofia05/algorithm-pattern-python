@@ -81,11 +81,11 @@ class Solution:
         if head is None:
             return head
         
-        tail = head
-        while tail.next is not None:
-            # put tail.next to head  
-            tmp = tail.next
-            tail.next = tail.next.next
+        curr = head
+        while curr.next is not None:
+            # put curr.next to head  
+            tmp = curr.next
+            curr.next = curr.next.next
             tmp.next = head
             head = tmp
         
