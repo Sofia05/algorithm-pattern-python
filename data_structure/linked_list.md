@@ -46,29 +46,20 @@ class Solution:
 ```Python
 class Solution:
     def deleteDuplicates(self, head: ListNode) -> ListNode:
-        
-        if head is None:
+        if not head:
             return head
         
-        dummy = ListNode(next=head)
-        
-        current, peek = dummy, head
-        find_dup = False
-        while peek.next is not None:
-            if peek.next.val == peek.val:
-                find_dup = True
-                peek.next = peek.next.next
+        dummy = ListNode(0, head)
+
+        cur = dummy
+        while cur.next and cur.next.next:
+            if cur.next.val == cur.next.next.val:
+                x = cur.next.val
+                while cur.next and cur.next.val == x:
+                    cur.next = cur.next.next
             else:
-                if find_dup:
-                    find_dup = False
-                    current.next = current.next.next
-                else:
-                    current = current.next
-                peek = peek.next
-        
-        if find_dup:
-            current.next = current.next.next
-        
+                cur = cur.next
+
         return dummy.next
 ```
 
