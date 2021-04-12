@@ -173,22 +173,19 @@ class Solution:
 ```go
 class Solution:
     def partition(self, head: ListNode, x: int) -> ListNode:
+        small = s = ListNode(next = head)
+        larger =l = ListNode()
         
-        p = l = ListNode()
-        q = s = ListNode(next=head)
-        
-        while q.next is not None:
-            if q.next.val < x:
-                q = q.next
+        while small.next :
+            if small.next.val <x:
+                small = small.next
             else:
-                p.next = q.next
-                q.next = q.next.next
-                p = p.next
-        
-        p.next = None
-        q.next = l.next
-        
-	return s.next
+                larger.next = small.next
+                small.next = small.next.next
+                larger = larger.next
+        larger.next = None
+        small.next = l.next
+        return s.next
 ```
 
 哑巴节点使用场景
