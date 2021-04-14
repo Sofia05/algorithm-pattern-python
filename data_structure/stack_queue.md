@@ -535,15 +535,15 @@ class Solution:
         
         result = []
         for i in range(N):
-            if maxQ and maxQ[0] == i - k:
+            if maxQ and maxQ[0] == i - k:  # 窗口大小为k，每次下标到了i-k就得弹出一个，然后maxQ中保存的是k-1个下标，为了接下来的第k个下标存入留出空间
                 maxQ.popleft()
             
-            while maxQ and nums[maxQ[-1]] < nums[i]:
+            while maxQ and nums[maxQ[-1]] < nums[i]:  # 如果maxQ队列中的值小于nums[i]，就都弹出
                 maxQ.pop()
             
             maxQ.append(i)
             
-            if i >= k - 1:
+            if i >= k - 1:  # 从第k个开始，下标为k-1，窗口每向右移动一次都存入result中
                 result.append(nums[maxQ[0]])
         
         return result
