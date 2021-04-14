@@ -19,10 +19,10 @@ def DFS(x):
 def DFS(x):
     dfs = [x] # implement by a stack
     while dfs:
-        v = dfs.pop()
-        if not visited(v):
+        v = dfs.pop()   # 栈后进先出，弹出最左边的节点，
+        if not visited(v):  # 如果该节点没有被访问过，则访问
             visit(v)
-            for n in neighbor(v):
+            for n in neighbor(v):  # 对于刚刚访问的节点，如果他的邻居节点没有被访问过，则压入栈中
                 if not visited(n):
                     dfs.append(n)
     return
@@ -49,11 +49,11 @@ def DFS(x): # used when need to aggregate results from children
 ```Python
 def BFS(x):
     visit(x)
-    bfs = collections.deque([x])
+    bfs = collections.deque([x])  # deque是队列初始化，可popleft从而先进先出
     while bfs:
-        v = bfs.popleft()
+        v = bfs.popleft() # 访问节点
         for n in neighbor(v):
-            if not visited(n):
+            if not visited(n): # 对于未访问过的邻居节点统统访问并入队列
                 visit(n)
                 bfs.append(n)
     return
