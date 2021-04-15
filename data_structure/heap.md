@@ -9,6 +9,7 @@
 ### [kth-largest-element-in-a-stream](https://leetcode-cn.com/problems/kth-largest-element-in-a-stream/)
 
 > 设计一个找到数据流中第K大元素的类。
+### https://leetcode-cn.com/problems/kth-largest-element-in-a-stream/solution/mian-shi-ti-jing-gao-jing-dian-topk-ben-u7w30/
 
 ```Python
 class KthLargest:
@@ -17,10 +18,12 @@ class KthLargest:
         self.K = k
         self.min_heap = []
         for num in nums:
-            if len(self.min_heap) < self.K:
+            if len(self.min_heap) < self.K:  # min_heap 的长度小于k则一直push到堆中
                 heapq.heappush(self.min_heap, num)
-            elif num > self.min_heap[0]:
-                heapq.heappushpop(self.min_heap, num)
+            elif num > self.min_heap[0]:  # 如果堆长度等于k，且接下来的num大于min_heap中最小值则
+	    			 # 在每次 add() 的时候，将新元素 push() 到堆中，如果此时堆中的元素超过了 KK，那么需要把堆中的最小元素（堆顶）pop() 出来
+                heapq.heappushpop(self.min_heap, num) # 此时堆中的最小元素（堆顶）就是整个数据流中的第 KK 大元素。
+			# nums 
 
     def add(self, val: int) -> int:
         if len(self.min_heap) < self.K:
