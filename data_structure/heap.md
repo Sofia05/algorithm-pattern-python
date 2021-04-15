@@ -45,15 +45,16 @@ class Solution:
         
         min_heap = []
         for i in range(min(k, N)): # 这里用了一点列有序的性质，第k个最小只可能在前k行中(k行以后的数至少大于了k个数)
-            min_heap.append((matrix[i][0], i, 0))
+            min_heap.append((matrix[i][0], i, 0))  #取出第一列候选人
+	      # matrix[i][0]是具体的值，后面的(i,0)是在记录候选人在矩阵中的位置，方便每次右移添加下一个候选人
         
-        heapq.heapify(min_heap)
+        heapq.heapify(min_heap)  # 变成一个heap
         
-        while k > 0:
-            num, r, c = heapq.heappop(min_heap)
+        while k > 0: # 一共弹k次
+            num, r, c = heapq.heappop(min_heap) # 弹出候选人里最小一个
             
-            if c < N - 1:
-                heapq.heappush(min_heap, (matrix[r][c + 1], r, c + 1))
+            if c < N - 1: # 如果这一行还没被弹完
+                heapq.heappush(min_heap, (matrix[r][c + 1], r, c + 1))   # 加入这一行的下一个候选人
             
             k -= 1
         
