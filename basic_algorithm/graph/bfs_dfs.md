@@ -19,7 +19,7 @@ def DFS(x):
 def DFS(x):
     dfs = [x] # implement by a stack
     while dfs:
-        v = dfs.pop()   # 栈后进先出，弹出最左边的节点，
+        v = dfs.pop()   # 栈后进先出，弹出最右边的节点，
         if not visited(v):  # 如果该节点没有被访问过，则访问
             visit(v)
             for n in neighbor(v):  # 对于刚刚访问的节点，如果他的邻居节点没有被访问过，则压入栈中
