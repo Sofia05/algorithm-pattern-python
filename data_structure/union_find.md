@@ -37,6 +37,14 @@ class Solution:
                 return edge
 ```
 
+```Python
+# 如果对路径压缩要求不高的话可使用
+def find(x):
+            if parent[x] != X:
+                parent[x] = find(parent[x])
+            return parent[x]
+```
+
 ### [accounts-merge](https://leetcode-cn.com/problems/accounts-merge/)
 
 ```Python
