@@ -77,7 +77,7 @@ class Solution:
         i = 0
         for acc in accounts:
             for email in acc[1:]:
-                email2name[email] = acc[0]
+                email2name[email] = acc[0]    # email2name字典中，对每个email都加上name
                 if email not in email2idx:
                     parent.append(i)
                     rank.append(1)
