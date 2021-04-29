@@ -14,8 +14,8 @@ class Solution:
                                        # 一开始，把所有元素的rank（秩）设为1。合并时比较两个根节点，把rank较小者往较大者上合并。
         
         def find(x):
-            if parent[parent[x]] != parent[x]:   # 节点x的父节点为parent[x]
-                parent[x] = find(parent[x]) # path compression  父节点设为根节点
+            if parent[parent[x]] != parent[x]:   #
+                parent[x] = find(parent[x]) # path compression 
             return parent[x]   # 返回父节点
         
         def union(x, y):
@@ -40,8 +40,8 @@ class Solution:
 ```Python
 # 如果对路径压缩要求不高的话可使用
 def find(x):
-            if parent[x] != X:
-                parent[x] = find(parent[x])
+            if parent[x] != X:  #  节点x的父节点为parent[x]
+                parent[x] = find(parent[x])    #  父节点设为根节点
             return parent[x]
 ```
 
