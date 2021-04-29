@@ -9,7 +9,7 @@
 class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
 
-        parent = list(range(len(edges) + 1))
+        parent = list(range(len(edges) + 1))  # 初始时每个结点的父节点都是自己，+1 表示第0个节点是空的，
         rank = [1] * (len(edges) + 1)  # 用一个数组rank[]记录每个根节点对应的树的深度（如果不是根节点，其rank相当于以它作为根节点的子树的深度）。
                                        # 一开始，把所有元素的rank（秩）设为1。合并时比较两个根节点，把rank较小者往较大者上合并。
         
