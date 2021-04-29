@@ -12,9 +12,9 @@ class Solution:
         rank = [1] * (len(edges) + 1)
         
         def find(x):
-            if parent[parent[x]] != parent[x]:
-                parent[x] = find(parent[x]) # path compression
-            return parent[x]
+            if parent[parent[x]] != parent[x]:   # 节点x的父节点为parent[x]
+                parent[x] = find(parent[x]) # path compression  父节点设为根节点
+            return parent[x]   # 返回父节点
         
         def union(x, y):
             px, py = find(x), find(y)
