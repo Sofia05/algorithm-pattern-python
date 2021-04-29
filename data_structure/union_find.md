@@ -5,12 +5,13 @@
 
 ### [redundant-connection](https://leetcode-cn.com/problems/redundant-connection/)
 
-```Python
+```Python   # 路径压缩和按秩合并如果一起使用，时间复杂度接近O(n) 
 class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
 
         parent = list(range(len(edges) + 1))
-        rank = [1] * (len(edges) + 1)
+        rank = [1] * (len(edges) + 1)  # 用一个数组rank[]记录每个根节点对应的树的深度（如果不是根节点，其rank相当于以它作为根节点的子树的深度）。
+                                       # 一开始，把所有元素的rank（秩）设为1。合并时比较两个根节点，把rank较小者往较大者上合并。
         
         def find(x):
             if parent[parent[x]] != parent[x]:   # 节点x的父节点为parent[x]
@@ -24,11 +25,11 @@ class Solution:
             # union by rank
             if rank[px] > rank[py]:
                 parent[py] = px
-            elif rank[px] < rank[py]:
+            elif rank[px] < rank[py]:  #把秩小的加到 秩多的里面，不会增加深度，只会增加广度
                 parent[px] = py
             else:
                 parent[px] = py
-                rank[py] += 1
+                rank[py] += 1   # 如果秩相同，则深度加1
             return True
         
         for edge in edges:
