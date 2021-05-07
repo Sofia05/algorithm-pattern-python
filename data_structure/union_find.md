@@ -83,7 +83,7 @@ class Solution:
                     rank.append(1)
                     email2idx[email] = i
                     i += 1
-                union(email2idx[acc[1]], email2idx[email])
+                union(email2idx[acc[1]], email2idx[email])   # union(edge[0], edge[1])  acc[1]:邮箱
         
         result = collections.defaultdict(list)
         for email in email2name:
