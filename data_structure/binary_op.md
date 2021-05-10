@@ -197,6 +197,8 @@ class Solution:
 
 思路：直接从 m 到 n 遍历一遍显然不是最优。一个性质，如果 m 不等于 n，则结果第一位一定是 0 （中间必定包含一个偶数）。利用这个性质，类似的将 m 和 n 右移后我们也可以判断第三位、第四位等等，免去了遍历的时间复杂度。
 
+https://leetcode-cn.com/problems/bitwise-and-of-numbers-range/solution/shu-zi-fan-wei-an-wei-yu-by-leetcode-solution/
+
 ```Python
 class Solution:
     def rangeBitwiseAnd(self, m: int, n: int) -> int:
