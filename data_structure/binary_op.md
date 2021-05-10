@@ -178,6 +178,7 @@ class Solution:
 > 颠倒给定的 32 位无符号整数的二进制位。
 
 思路：简单想法依次颠倒即可。更高级的想法是考虑到处理超长比特串时可能出现重复的pattern，此时如果使用 cache 记录出现过的 pattern 并在重复出现时直接调用结果可以节约时间复杂度，具体可以参考 leetcode 给出的解法。
+
 https://leetcode-cn.com/problems/reverse-bits/solution/ju-yi-fan-san-yi-wen-dai-ni-shua-san-dao-ubat/
 ```Python
 class Solution:
