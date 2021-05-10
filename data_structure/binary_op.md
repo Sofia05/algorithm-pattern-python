@@ -112,8 +112,22 @@ class Solution:
 
 > 给定一个非负整数  **num**。对于  0 ≤ i ≤ num  范围中的每个数字  i ，计算其二进制数中的 1 的数目并将它们作为数组返回。
 
-- 思路：利用上一题的解法容易想到 O(nk) 的解法，k 为位数。但是实际上可以利用动态规划将复杂度降到 O(n)，想法其实也很简单，即当前数的 1 个数等于比它少一个 1 的数的结果加 1。下面给出三种 DP 解法
+- 思路：利用上一题的解法容易想到 O(nk) 的解法，k 为位数。但是实际上可以利用动态规划将复杂度降到 O(n)，想法其实也很简单，即当前数的 1 个数等于比它少一个 1 的数的结果加 1。下面给出三种 DP 解法~~~
 
+看懂：https://leetcode-cn.com/problems/counting-bits/solution/bi-te-wei-ji-shu-by-leetcode-solution-0t1i/
+```Python
+class Solution:
+    def countBits(self, num: int) -> List[int]:
+        bits = [0]
+        highBit = 0
+        for i in range(1, num + 1):
+            if i & (i - 1) == 0:
+                highBit = i
+            bits.append(bits[i - highBit] + 1)
+        return bits
+```
+
+以下三种看不懂：
 ```Python
 # x <- x // 2
 class Solution:
