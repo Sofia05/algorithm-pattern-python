@@ -178,23 +178,16 @@ class Solution:
 > 颠倒给定的 32 位无符号整数的二进制位。
 
 思路：简单想法依次颠倒即可。更高级的想法是考虑到处理超长比特串时可能出现重复的pattern，此时如果使用 cache 记录出现过的 pattern 并在重复出现时直接调用结果可以节约时间复杂度，具体可以参考 leetcode 给出的解法。
-
+https://leetcode-cn.com/problems/reverse-bits/solution/ju-yi-fan-san-yi-wen-dai-ni-shua-san-dao-ubat/
 ```Python
-import functools
-
 class Solution:
-    def reverseBits(self, n):
-        ret, power = 0, 24
-        while n:
-            ret += self.reverseByte(n & 0xff) << power
-            n = n >> 8
-            power -= 8
-        return ret
-
-    # memoization with decorator
-    @functools.lru_cache(maxsize=256)
-    def reverseByte(self, byte):
-        return (byte * 0x0202020202 & 0x010884422010) % 1023
+    def reverseBits(self, n: int) -> int:
+        res = 0
+        for i in range(32):
+            res = res * 2 + n % 2
+            n = int(n/2)
+            i += 1
+        return res
 ```
 
 ### [bitwise-and-of-numbers-range](https://leetcode-cn.com/problems/bitwise-and-of-numbers-range/)
