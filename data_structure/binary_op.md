@@ -187,7 +187,6 @@ class Solution:
         for i in range(32):
             res = res * 2 + n % 2
             n = int(n/2)
-            i += 1
         return res
 ```
 
