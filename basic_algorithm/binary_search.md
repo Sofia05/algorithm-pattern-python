@@ -9,6 +9,47 @@
 ![binary_search_template](https://img.fuiboom.com/img/binary_search_template.png)
 
 其中，模板 1 和 3 是最常用的，几乎所有二分查找问题都可以用其中之一轻松实现。模板 2 更高级一些，用于解决某些类型的问题。详细的对比可以参考 Leetcode 上的文章：[二分搜索模板](https://leetcode-cn.com/explore/learn/card/binary-search/212/template-analysis/847/)。
+区分语法
+模板1：
+初始条件：left = 0, right = length-1
+终止：left > right             while left <= right:
+向左查找：right = mid-1
+向右查找：left = mid+1
+
+
+模板2：
+关键属性
+
+一种实现二分查找的高级方法。
+查找条件需要访问元素的直接右邻居。
+使用元素的右邻居来确定是否满足条件，并决定是向左还是向右。
+保证查找空间在每一步中至少有 2 个元素。
+需要进行后处理。 当你剩下 1 个元素时，循环 / 递归结束。 需要评估剩余元素是否符合条件
+
+区分语法:
+初始条件：left = 0, right = length
+终止：left == right     while left<right:
+向左查找：right = mid
+向右查找：left = mid+1
+
+
+模板3：模板 #3 是二分查找的另一种独特形式。 它用于搜索需要访问当前索引及其在数组中的直接左右邻居索引的元素或条件
+关键属性
+
+ 
+
+实现二分查找的另一种方法。
+搜索条件需要访问元素的直接左右邻居。
+使用元素的邻居来确定它是向右还是向左。
+保证查找空间在每个步骤中至少有 3 个元素。
+需要进行后处理。 当剩下 2 个元素时，循环 / 递归结束。 需要评估其余元素是否符合条件。
+
+区分语法:
+初始条件：left = 0, right = length-1
+终止：left + 1 == right      while left + 1 < right:
+向左查找：right = mid
+向右查找：left = mid
+
 
 ### [binary-search](https://leetcode-cn.com/problems/binary-search/)
 
