@@ -126,6 +126,7 @@ class Solution:
 > 给定一个包含 n 个整数的排序数组，找出给定目标值 target 的起始和结束位置。如果目标值不在数组中，则返回`[-1, -1]`
 
 - 思路：核心点就是找第一个 target 的索引，和最后一个 target 的索引，所以用两次二分搜索分别找第一次和最后一次的位置，下面是使用模板 3 的解法
+- 
 模板1：
 ```Python
 class Solution(object):
@@ -248,6 +249,21 @@ class Solution:
                 l = mid + 1
         
         return l
+```
+相等：
+```Python
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        left ,right = 0,len(nums)-1
+        while left <= right:
+            mid = (left+right)//2
+            #if nums[mid] == target:
+            #    return mid
+            if nums[mid] >= target:
+                right = mid - 1
+            else:
+                left = mid + 1
+        return left
 ```
 
 ### [search-a-2d-matrix](https://leetcode-cn.com/problems/search-a-2d-matrix/)
