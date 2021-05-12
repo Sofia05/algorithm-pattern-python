@@ -126,7 +126,34 @@ class Solution:
 > 给定一个包含 n 个整数的排序数组，找出给定目标值 target 的起始和结束位置。如果目标值不在数组中，则返回`[-1, -1]`
 
 - 思路：核心点就是找第一个 target 的索引，和最后一个 target 的索引，所以用两次二分搜索分别找第一次和最后一次的位置，下面是使用模板 3 的解法
-
+模板1：
+```Python
+class Solution(object):
+    def searchRange(self,nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        def left_func(nums,target):
+            n = len(nums)-1
+            left = 0
+            right = n
+            while(left<=right):
+                mid = (left+right)//2
+                if nums[mid] >= target:
+                    right = mid-1
+                if nums[mid] < target:
+                    left = mid+1
+            return left
+        a =  left_func(nums,target)
+        b = left_func(nums,target+1)
+        if  a == len(nums) or nums[a] != target:
+            return [-1,-1]
+        else:
+            return [a,b-1]
+```
+模板3：
 ```Python
 class Solution:
     def searchRange(self, nums, target):
