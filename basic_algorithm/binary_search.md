@@ -354,20 +354,48 @@ class Solution:
 
 ### [search-in-rotated-sorted-array](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)
 
-> 假设按照升序排序的数组在预先未知的某个点上进行了旋转，例如，数组 [0, 1, 2, 4, 5, 6, 7] 可能变为 [4, 5, 6, 7, 0, 1, 2]。搜索一个给定的目标值，如果数组中存在这个目标值，则返回它的索引，否则返回  -1。假设数组中不存在重复的元素。
+> 假设按照升序排序的数组在预先未知的某个点上进行了旋转，例如，数组 [0, 1, 2, 4, 5, 6, 7] 可能变为 [4, 5, 6, 7, 0, 1, 2]。搜索一个给定的目标值，如果数组中存在这个目标值，则返回它的索引，否则返回  -1。假设数组中不存在重复的元素。
+
+好理解版本
+```Python
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+
+        left ,right = 0,len(nums)-1
+        while left <= right:
+            mid = (left+right)//2
+            if nums[mid] == target:
+                return mid
+            elif nums[mid] < nums[right]: # 右边有序
+                if nums[mid] < target and target <= nums[right]: #目标值在右边
+                    left = mid + 1
+                else:
+                    right = mid - 1
+            else:  # 左边有序
+                if nums[left] <= target and target < nums[mid]:
+                    right = mid - 1
+                else:
+                    left = mid +1
+
+        return -1
+```
+
 
 ```Python
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         
         l , r = 0, len(nums) - 1
-        
+        # 1. 首先明白，旋转数组后，从中间划分，一定有一边是有序的。
+        # 2. 由于一定有一边是有序的，所以根据有序的两个边界值来判断目标值在有序一边还是无序一边
+        # 3. 这题找目标值，遇到目标值即返回
+        # 4. 注意：由于有序的一边的边界值可能等于目标值，所以判断目标值是否在有序的那边时应该加个等号(在二分查找某个具体值得时候如果把握不好边界值，可以再每次查找前判断下边界值，也就是while循环里面的两个if注释)
         while l <= r:
             mid = l + (r - l) // 2
             if nums[mid] == target:
                 return mid
-            elif nums[mid] > target:
-                if nums[l] > target and nums[mid] > nums[r]:
+            elif nums[mid] > target: # 目标值在左边
+                if nums[l] > target and nums[mid] > nums[r]: #  
                     l = mid + 1
                 else:
                     r = mid - 1
