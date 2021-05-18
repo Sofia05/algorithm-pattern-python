@@ -69,8 +69,8 @@ class Solution:
             return 0
         
         dp = triangle[0]
-        for row in triangle[1:]:
-            dp_new = [row[0] + dp[0]]
+        for row in triangle[1:]:  # 从第二行开始
+            dp_new = [row[0] + dp[0]]  # 每行第一个数 加上第一个的一个数
             for i in range(len(dp) - 1):
                 dp_new.append(row[i+1] + min(dp[i], dp[i+1]))
             dp_new.append(row[-1] + dp[-1])
