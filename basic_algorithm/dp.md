@@ -290,7 +290,7 @@ class Solution:
             
             cur_max = max(cur_max, i + nums[i]) # DP
         
-        return min_step
+        return step
 ```
 
 ### [palindrome-partitioning-ii](https://leetcode-cn.com/problems/palindrome-partitioning-ii/)
