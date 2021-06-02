@@ -384,7 +384,7 @@ class Solution:
         
         for j in range(len(s)):
             for i in range(j+1):
-                if dp[i - 1] and s[i:j+1] in wordDict:
+                if dp[i - 1] and s[i:j+1] in wordDict:  # i-1 ,当i=0时，则dp[i-1] = dp[-1] = True
                     dp[j] = True
                     break
         
