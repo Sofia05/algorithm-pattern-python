@@ -117,12 +117,12 @@ def heapsort(A):
     # construct max heap
     n = len(A)
     for i in range(n // 2 - 1, -1, -1):
-        heap_adjust(A, i)
+        heap_adjust(A, i, n) # 从第一个非叶子节点为根节点的子树开始，将其调整为大根堆，再调整倒数第二个非叶子结点作为根节点的子树，依次类推,直到为最大堆
     
     # sort
     for i in range(n - 1, 0, -1):
         A[0], A[i] = A[i], A[0]
-        heap_adjust(A, end=i)
+        heap_adjust(A, 0, end=i)  # 此时最大的已经在放到数组中，最小的在堆顶，再从根节点开始调整为最大堆
     
     return A
 
