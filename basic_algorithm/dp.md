@@ -378,17 +378,16 @@ class Solution:
 ```Python
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        
-        dp = [False] * (len(s) + 1)
-        dp[-1] = True
-        
-        for j in range(len(s)):
-            for i in range(j+1):
-                if dp[i - 1] and s[i:j+1] in wordDict:  # i-1 ,当i=0时，则dp[i-1] = dp[-1] = True
-                    dp[j] = True
-                    break
-        
-        return dp[len(s) - 1]
+    	n = len(s)
+        dp = [False] * (n+1)
+        dp[0] = True
+
+        for i in range(1,n+1):
+            for j in range(i):
+                if s[j:i] in wordDict and dp[j]:
+                    dp[i] = True
+                    break 
+        return dp[-1]
 
 ```
 
