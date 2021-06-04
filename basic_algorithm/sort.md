@@ -91,24 +91,50 @@ if __name__ == '__main__':
 
 核心代码
 
+```python 
+class Solution:  # 好理解版本
+    def adjust_heap(self,nums,start,adjust_size):
+        left_child, right_child = start*2+1, start*2+2
+        largest = start
+        if left_child < adjust_size and nums[left_child] > nums[largest]:
+            largest = left_child
+        if right_child < adjust_size and nums[right_child] > nums[largest]:
+            largest = right_child 
+        if largest != start:
+            nums[start], nums[largest] = nums[largest], nums[start]
+            self.adjust_heap(nums,largest,adjust_size)  #！！！！！！！！！！！！！！！！！！！！！！
+    
+    def heap_sort(self, nums: List[int], k: int) -> int:
+        n = len(nums)
+        # 根据初始数据构建最大堆
+        for i in range(n//2 - 1, -1, -1):
+            self.adjust_heap(nums,i,n)
+            
+        # 首位交换并从新构建最大堆
+        for i in range(n-1,0,-1):
+            nums[0], nums[i] = nums[i], nums[0]
+            self.adjust_heap(nums,0,i)
+        return nums
+```
+
 ```Python
-def heap_adjust(A, start=0, end=None):
+def heap_adjust(A, start=0, end=None):  # end= adjust_size
     if end is None:
         end = len(A)
     
     while start is not None and start < end // 2:
         l, r = start * 2 + 1, start * 2 + 2
-        swap = None
+        swap = None  #!!!!!!!!!!!!!!!!!!!
 
         if A[l] > A[start]:
             swap = l
-        if r < end and A[r] > A[start] and (swap is None or A[r] > A[l]):
+        if r < end and A[r] > A[start] and (swap is None or A[r] > A[l]): ###!!!!!!!!!!!!!!!!!!!!!!
             swap = r
 
         if swap is not None:
             A[start], A[swap] = A[swap], A[start]
             
-        start = swap
+        start = swap # !!!!!!!!!!!!!
     
     return
 
