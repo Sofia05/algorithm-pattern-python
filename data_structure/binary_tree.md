@@ -75,10 +75,10 @@ class Solution:
         s, inorder = [], []
         node = root
         while len(s) > 0 or node is not None:
-            if node is not None:
+            if node is not None:   # 如果节点非空，就一直入栈，并访问左子树，
                 s.append(node)
                 node = node.left
-            else:
+            else:           # 如果左子树为空，则访问该节点并开始访问右子树
                 node = s.pop()
                 inorder.append(node.val)
                 node = node.right
@@ -95,12 +95,12 @@ class Solution:
         node, last_visit = root, None
         
         while len(s) > 0 or node is not None:
-            if node is not None:
+            if node is not None:        # 如果节点非空，就一直入栈，并访问左子树，
                 s.append(node)
                 node = node.left
             else:
                 peek = s[-1]
-                if peek.right is not None and last_visit != peek.right:
+                if peek.right is not None and last_visit != peek.right:    # 如果节点右子树非空，且右子树没有被访问过，
                     node = peek.right
                 else:
                     last_visit = s.pop()
