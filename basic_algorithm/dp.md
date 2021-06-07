@@ -636,6 +636,21 @@ class Solution:
 > 1 到 26 分别对应 a 到 z，给定输入数字串，问总共有多少种译码方法
 
 常规 DP 题，注意处理edge case即可
+```python
+class Solution:
+    def numDecodings(self, s: str) -> int:
+        n = len(s)
+        dp = [0] * (n+1)
+        dp[0] = 1
+        
+        for i in range(1,n+1):
+            if s[i-1] != '0':
+                dp[i] = dp[i-1]
+            if i>1 and s[i-2] != '0' and int(s[i-2:i]) <= 26:
+                dp[i] += dp[i-2]
+        return dp[n]
+```
+
 
 ```Python
 class Solution:
