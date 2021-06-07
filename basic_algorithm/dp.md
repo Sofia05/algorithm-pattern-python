@@ -593,6 +593,20 @@ class Solution:
 
 处理负数情况稍微有点复杂，注意需要同时 DP 正数乘积和负数乘积
 
+```python
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        n = len(nums)
+        max_po, min_ne,ans = nums[0], nums[0], nums[0]
+
+        for i in range(1,n):
+            po ,ne = max_po, min_ne
+            max_po = max(po * nums[i], max(nums[i], ne * nums[i]))
+            min_ne = min(ne * nums[i], min(nums[i], po * nums[i]))
+            ans = max(max_po, ans)
+        return ans
+```
+
 ```Python
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
