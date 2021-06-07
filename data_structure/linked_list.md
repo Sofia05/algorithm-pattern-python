@@ -114,25 +114,20 @@ class Solution:
 
 ```Python
 class Solution:
-    def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:
-        
+    def reverseBetween(self, head: ListNode, left: int, right: int) -> ListNode:
         if head is None:
             return head
-        
-        n -= m # number of times of reverse
-        
-        curr = dummy = ListNode(next=head)
-        while m > 1: # find node at m - 1
-            curr = curr.next
-            m -= 1
-        
-        start = curr.next
-        while n > 0: # reverse n - m times
-            tmp = start.next
-            start.next = tmp.next
-            tmp.next = curr.next
-            curr.next = tmp
-            n -= 1
+        pre = dummy = ListNode(next = head)
+        for i in range(left-1):
+            pre = pre.next
+
+        curr = pre.next
+        for i in range(right-left):
+            next1 = curr.next
+            curr.next = curr.next.next
+            next1.next = pre.next 
+            pre.next = next1   
+
         return dummy.next
 ```
 
